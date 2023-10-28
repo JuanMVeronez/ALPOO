@@ -7,20 +7,18 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class MySQLConnector implements DatabaseConnector {
-    private Connection connection;
-    private final String jdbcUrl;
-    private final String username;
-    private final String password;
+    private static MySQLConnector instance;
+    public Connection connection;
 
-    
-    public MySQLConnector(String jdbcUrl, String username, String password) {
-        this.jdbcUrl = jdbcUrl;
-        this.username = username;
-        this.password = password;
+    public static MySQLConnector getInstance() {
+        if (instance == null) {
+            instance = new MySQLConnector();
+        }
+        return instance;
     }
 
     @Override
-    public boolean connect() {
+    public boolean connect(String jdbcUrl, String username, String password) {
         try {
             this.connection = DriverManager.getConnection(jdbcUrl, username, password);
             System.out.println("Conexão com o banco de dados MySQL estabelecida com sucesso!");
