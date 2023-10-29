@@ -15,7 +15,7 @@ public class BookModel {
 
     public List<String> listBookTitles() {
         List<String> titles = new ArrayList<String>();
-        List<Book> books = this.repository.listBooks();
+        List<Book> books = this.repository.list();
         
         for (Book book : books) {
             titles.add(book.getTitle());

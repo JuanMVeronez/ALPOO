@@ -1,38 +1,37 @@
 package com.bookstore.daos;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 
 import com.bookstore.MySQLConnector;
-import com.bookstore.entities.Book;
+import com.bookstore.entities.Publisher;
 
-public class BookRepository {
+public class PublisherRepository {
     private Connection connection;
 
-    public BookRepository() {
+    public PublisherRepository() {
         this.connection = MySQLConnector.getInstance().connection;
     }
-    
-    public List<Book> list() {
-        List<Book> books = new ArrayList<Book>();
 
-        final String query = "SELECT * FROM Books;";
+    public List<Publisher> list() {
+        List<Publisher> publishers = new ArrayList<Publisher>();
+
+        final String query = "SELECT * FROM Publishers;";
         try {
 
             Statement stm = connection.createStatement();
             ResultSet rs = stm.executeQuery(query);
 
             while(rs.next()) {
-                String title = rs.getString("title");
-                String isbn = rs.getString("isbn");
                 int publisherId = rs.getInt("publisher_id");
-                float price = rs.getFloat("price");
+                String name = rs.getString("name");
+                String url = rs.getString("url");
                 
-                Book book = new Book(title, isbn, publisherId, price);
-                books.add(book);
+                Publisher publisher = new Publisher(publisherId, name, url);
+                publishers.add(publisher);
             }
 
 
@@ -40,6 +39,6 @@ public class BookRepository {
             e.printStackTrace();
         }
 
-        return books;
+        return publishers;
     }
 }

@@ -6,6 +6,7 @@ import java.sql.SQLException;
 import java.util.List;
 
 import com.bookstore.models.BookModel;
+import com.bookstore.models.PublisherModel;
 
 public class App 
 {   
@@ -23,11 +24,11 @@ public class App
 
         connector.connect(jdbcUrl, username, password);
 
-        BookModel bookModel = new BookModel();
-        List<String> titles = bookModel.listBookTitles();
+        PublisherModel model = new PublisherModel();
+        List<String> names = model.listPublisherNames();
 
-        for(String title : titles) {
-            System.out.println(title);
+        for(String name : names) {
+            System.out.println(name);
         }
     }
 }
