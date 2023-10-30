@@ -1,6 +1,7 @@
 package com.bookstore.daos;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
@@ -45,12 +46,14 @@ public class PublisherRepository {
     public Publisher getByIsbn(String isbn) {
         final String query = "SELECT P.* FROM Publishers AS P " 
             + "LEFT JOIN Books AS B ON P.publisher_id = B.publisher_id " 
-            + "WHERE B.isbn = '0-201-96426-0';";
+            + "WHERE B.isbn = ?;";
     
         try {
 
-            Statement stm = connection.createStatement();
-            ResultSet rs = stm.executeQuery(query);
+            PreparedStatement stm = connection.prepareStatement(query);
+            stm.setString(1, isbn);
+
+            ResultSet rs = stm.executeQuery();
 
             if(rs.next()) {
                 int publisherId = rs.getInt("publisher_id");

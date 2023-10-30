@@ -28,7 +28,7 @@ public class App
         connector.connect(jdbcUrl, username, password);
 
         BookModel model = new BookModel();
-        Book book = model.bookDetails("Test");
+        Book book = model.bookDetails("0-201-96426-0");
 
         System.out.println(book.getAuthors().get(0).getName() + " " + book.getPublisher().getName());
         
