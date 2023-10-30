@@ -3,6 +3,8 @@ package com.bookstore;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import com.bookstore.entities.Author;
@@ -28,9 +30,11 @@ public class App
 
         connector.connect(jdbcUrl, username, password);
 
-        AuthorModel model = new AuthorModel();
-        Author author = model.create("John", "Doh");
+        BookModel model = new BookModel();
+        List<Integer> authors = new ArrayList<Integer>();
+        authors.addAll(Arrays.asList(2597));
+        Book book = model.create("getTitle", "aisdunasidano", 201, 1.234, authors);
 
-        System.out.println(author.getName() + " " + author.getFname() + " " + author.getAuthorId());
+        System.out.println(book.getIsbn() + book.getPrice() + book.getPublisherId() + book.getTitle() + book.getPublisher().getName());
     }
 }

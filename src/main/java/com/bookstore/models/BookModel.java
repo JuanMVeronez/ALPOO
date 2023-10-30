@@ -16,7 +16,7 @@ public class BookModel {
         this.repositories = new Repositories();
     }
 
-    public List<String> listBookTitles() {
+    public List<String> list() {
         List<String> titles = new ArrayList<String>();
         List<Book> books = this.repositories.books.list();
         
@@ -27,7 +27,7 @@ public class BookModel {
         return titles;
     }
 
-    public Book bookDetails(String isbn) {
+    public Book read(String isbn) {
         Book book = this.repositories.books.getByIsbn(isbn);
 
         Publisher publisher = this.repositories.publishers.getByIsbn(isbn);
@@ -37,5 +37,16 @@ public class BookModel {
         book.setAuthors(authors);
 
         return book;
+    }
+
+    public Book create(
+        String title,
+        String isbn,
+        int publisherId,
+        double price,
+        List<Integer> authorsId
+    ) {
+        this.repositories.books.create(title, isbn, publisherId, price, authorsId);
+        return this.read(isbn);
     }
 }

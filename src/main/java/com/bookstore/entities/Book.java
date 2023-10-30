@@ -6,7 +6,7 @@ public class Book {
     String title;
     String isbn;
     int publisherId;
-    float price;
+    double price;
 
     Publisher publisher;
     List<Author> authors;
@@ -15,7 +15,7 @@ public class Book {
         String title,
         String isbn,
         int publisherId,
-        float price
+        double price
     ) {
         this.title = title;
         this.isbn = isbn;
@@ -31,7 +31,7 @@ public class Book {
         return isbn;
     }
 
-    public float getPrice() {
+    public double getPrice() {
         return price;
     }
 
