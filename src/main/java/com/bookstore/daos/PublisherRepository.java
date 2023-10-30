@@ -41,4 +41,30 @@ public class PublisherRepository {
 
         return publishers;
     }
+
+    public Publisher getByIsbn(String isbn) {
+        final String query = "SELECT P.* FROM Publishers AS P " 
+            + "LEFT JOIN Books AS B ON P.publisher_id = B.publisher_id " 
+            + "WHERE B.isbn = '0-201-96426-0';";
+    
+        try {
+
+            Statement stm = connection.createStatement();
+            ResultSet rs = stm.executeQuery(query);
+
+            if(rs.next()) {
+                int publisherId = rs.getInt("publisher_id");
+                String name = rs.getString("name");
+                String url = rs.getString("url");
+                
+                return new Publisher(publisherId, name, url);
+            }
+
+
+        }catch(Exception e) {
+            e.printStackTrace();
+        }
+
+        return null;
+    }
 }

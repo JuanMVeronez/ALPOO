@@ -42,4 +42,29 @@ public class BookRepository {
 
         return books;
     }
+ 
+    public Book getByIsbn(String isbn) {
+        final String query = "SELECT * FROM Books "
+            + "WHERE isbn = '0-201-96426-0';";
+        
+        try {
+
+            Statement stm = connection.createStatement();
+            ResultSet rs = stm.executeQuery(query);
+
+            if(rs.next()) {
+                String title = rs.getString("title");
+                int publisherId = rs.getInt("publisher_id");
+                float price = rs.getFloat("price");
+                
+                return new Book(title, isbn, publisherId, price);
+            }
+
+
+        } catch(Exception e) {
+            e.printStackTrace();
+        }
+
+        return null;
+    }
 }

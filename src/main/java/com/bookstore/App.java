@@ -6,7 +6,9 @@ import java.sql.SQLException;
 import java.util.List;
 
 import com.bookstore.entities.Author;
+import com.bookstore.entities.Book;
 import com.bookstore.models.AuthorModel;
+import com.bookstore.models.BookModel;
 import com.bookstore.models.PublisherModel;
 
 public class App 
@@ -25,11 +27,10 @@ public class App
 
         connector.connect(jdbcUrl, username, password);
 
-        AuthorModel model = new AuthorModel();
-        List<Author> authors = model.listAuthors();
+        BookModel model = new BookModel();
+        Book book = model.bookDetails("Test");
 
-        for(Author author : authors) {
-            System.out.println(author.getName() + " " + author.getFname());
-        }
+        System.out.println(book.getAuthors().get(0).getName() + " " + book.getPublisher().getName());
+        
     }
 }
