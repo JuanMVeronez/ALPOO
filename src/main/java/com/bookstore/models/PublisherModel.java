@@ -13,7 +13,7 @@ public class PublisherModel {
         this.repository = new PublisherRepository();
     }
 
-    public List<String> listPublisherNames() {
+    public List<String> listNames() {
         List<String> names = new ArrayList<String>();
         List<Publisher> publishers = this.repository.list();
         

@@ -41,6 +41,29 @@ public class AuthorRepository {
         return authors;
     }
 
+    public Author getById(int id) {
+        final String query = "SELECT * FROM Authors "
+            + "WHERE author_id = ?;";
+        
+        try {
+            PreparedStatement stm = connection.prepareStatement(query);
+            stm.setInt(1, id);
+
+            ResultSet rs = stm.executeQuery();
+
+            while (rs.next()) {
+                String name = rs.getString("name");
+                String fname = rs.getString("fname");
+
+                return new Author(id, name, fname);
+            }
+        } catch(Exception e) {
+            e.printStackTrace();
+        }
+
+        return null;
+    }
+
     public List<Author> listByIsbn(String isbn) {
         List<Author> authors = new ArrayList<Author>();
 
@@ -68,5 +91,25 @@ public class AuthorRepository {
         }
 
         return authors;
+    }
+
+    public int create(String name, String fname) {
+        final String query = "INSERT INTO Authors (name, fname) VALUES (?, ?);";
+        
+        try (PreparedStatement stm = connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS)) {
+            stm.setString(1, name);
+            stm.setString(2, fname);
+            
+            stm.executeUpdate();
+
+            ResultSet generatedKeys = stm.getGeneratedKeys();
+            if (generatedKeys.next()) {
+                return generatedKeys.getInt(1);
+            }    
+        } catch(Exception e) {
+            e.printStackTrace();
+        }
+
+        return -1;
     }
 }

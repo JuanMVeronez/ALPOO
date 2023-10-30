@@ -16,4 +16,11 @@ public class AuthorModel {
         List<Author> authors = this.repository.list();
         return authors;
     }
+
+    public Author create(String name, String url) {
+        int id = this.repository.create(name, url);
+        Author author = this.repository.getById(id);
+
+        return author;
+    }
 }

@@ -28,9 +28,9 @@ public class App
 
         connector.connect(jdbcUrl, username, password);
 
-        PublisherModel model = new PublisherModel();
-        Publisher publisher = model.create("ABCD", "12345");
+        AuthorModel model = new AuthorModel();
+        Author author = model.create("John", "Doh");
 
-        System.out.println(publisher.getName() + " " + publisher.getUrl() + " " + publisher.getPublisherId());
+        System.out.println(author.getName() + " " + author.getFname() + " " + author.getAuthorId());
     }
 }

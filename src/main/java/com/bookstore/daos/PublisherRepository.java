@@ -98,16 +98,16 @@ public class PublisherRepository {
     public int create(String name, String url) {
         final String query = "INSERT INTO Publishers (name, url) VALUES (?, ?);";
         
-            try (PreparedStatement stm = connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS)) {
-                stm.setString(1, name);
-                stm.setString(2, url);
-                
-                stm.executeUpdate();
-    
-                ResultSet generatedKeys = stm.getGeneratedKeys();
-                if (generatedKeys.next()) {
-                    return generatedKeys.getInt(1);
-                }    
+        try (PreparedStatement stm = connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS)) {
+            stm.setString(1, name);
+            stm.setString(2, url);
+            
+            stm.executeUpdate();
+
+            ResultSet generatedKeys = stm.getGeneratedKeys();
+            if (generatedKeys.next()) {
+                return generatedKeys.getInt(1);
+            }    
         } catch(Exception e) {
             e.printStackTrace();
         }
