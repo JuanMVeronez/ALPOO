@@ -23,4 +23,11 @@ public class PublisherModel {
 
         return names;
     }
+
+    public Publisher create(String name, String url) {
+        int id = this.repository.create(name, url);
+        Publisher publisher = this.repository.getById(id);
+
+        return publisher;
+    }
 }

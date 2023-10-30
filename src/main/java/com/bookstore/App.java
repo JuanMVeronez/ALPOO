@@ -7,6 +7,7 @@ import java.util.List;
 
 import com.bookstore.entities.Author;
 import com.bookstore.entities.Book;
+import com.bookstore.entities.Publisher;
 import com.bookstore.models.AuthorModel;
 import com.bookstore.models.BookModel;
 import com.bookstore.models.PublisherModel;
@@ -27,10 +28,9 @@ public class App
 
         connector.connect(jdbcUrl, username, password);
 
-        BookModel model = new BookModel();
-        Book book = model.bookDetails("0-201-96426-0");
+        PublisherModel model = new PublisherModel();
+        Publisher publisher = model.create("ABCD", "12345");
 
-        System.out.println(book.getAuthors().get(0).getName() + " " + book.getPublisher().getName());
-        
+        System.out.println(publisher.getName() + " " + publisher.getUrl() + " " + publisher.getPublisherId());
     }
 }

@@ -15,6 +15,14 @@ public class Publisher {
         this.url = url;
     }
 
+    public Publisher(
+        String name,
+        String url
+    ) {
+        this.name = name;
+        this.url = url;
+    }
+
     public int getPublisherId() {
         return publisherId;
     }
