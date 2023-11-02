@@ -72,7 +72,7 @@ public class AuthorRepository {
             stm.setInt(1, id);
             stm.setBoolean(2, cascade);
 
-            stm.executeQuery();
+            stm.executeUpdate();
         } catch(Exception e) {
             e.printStackTrace();
         }

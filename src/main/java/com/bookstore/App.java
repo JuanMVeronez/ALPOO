@@ -30,10 +30,10 @@ public class App
 
         connector.connect(jdbcUrl, username, password);
 
-        AuthorModel model = new AuthorModel();
+        BookModel model = new BookModel();
         
-        model.delete(5698, false);
+        model.delete("0-471-11709-9");
 
-        model.listAuthors().forEach(author -> System.out.println(author.getName()));
+        model.list().forEach(book -> System.out.println(book.getTitle()));
     }
 }

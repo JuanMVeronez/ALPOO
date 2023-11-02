@@ -120,4 +120,17 @@ public class BookRepository {
             }
         }
     }
+
+    public void delete(String isbn) {
+        final String query = "CALL deleteBook(?);";
+
+        try {
+            PreparedStatement stm = connection.prepareStatement(query);
+            stm.setString(1, isbn);
+            
+            stm.executeUpdate();
+        } catch(Exception e) {
+            e.printStackTrace();
+        }
+    }
 }

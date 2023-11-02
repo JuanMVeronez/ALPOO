@@ -38,3 +38,12 @@ BEGIN
     DELETE FROM Publishers WHERE publisher_id = publisherId;
 END;
 //
+
+CREATE PROCEDURE deleteBook(
+    IN bIsbn VARCHAR(13)
+)
+BEGIN
+    DELETE FROM BooksAuthors WHERE isbn = bIsbn;
+    DELETE FROM Books WHERE isbn = bIsbn; 
+END;
+//

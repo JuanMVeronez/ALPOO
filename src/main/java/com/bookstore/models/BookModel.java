@@ -16,15 +16,10 @@ public class BookModel {
         this.repositories = new Repositories();
     }
 
-    public List<String> list() {
-        List<String> titles = new ArrayList<String>();
+    public List<Book> list() {
         List<Book> books = this.repositories.books.list();
-        
-        for (Book book : books) {
-            titles.add(book.getTitle());
-        }
 
-        return titles;
+        return books;
     }
 
     public Book read(String isbn) {
@@ -48,5 +43,9 @@ public class BookModel {
     ) {
         this.repositories.books.create(title, isbn, publisherId, price, authorsId);
         return this.read(isbn);
+    }
+
+    public void delete(String isbn) {
+        this.repositories.books.delete(isbn);
     }
 }
