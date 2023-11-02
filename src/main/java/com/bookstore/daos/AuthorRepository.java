@@ -63,6 +63,20 @@ public class AuthorRepository {
 
         return null;
     }
+    
+    public void delete(int id, boolean cascade) {
+        final String query = "CALL deleteAuthor(?, ?);";
+
+        try {
+            PreparedStatement stm = connection.prepareStatement(query);
+            stm.setInt(1, id);
+            stm.setBoolean(2, cascade);
+
+            stm.executeQuery();
+        } catch(Exception e) {
+            e.printStackTrace();
+        }
+    }
 
     public List<Author> listByIsbn(String isbn) {
         List<Author> authors = new ArrayList<Author>();

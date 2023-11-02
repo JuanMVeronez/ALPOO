@@ -23,4 +23,8 @@ public class AuthorModel {
 
         return author;
     }
+
+    public void delete(int id, boolean cascade) {
+        this.repository.delete(id, cascade);
+    }
 }

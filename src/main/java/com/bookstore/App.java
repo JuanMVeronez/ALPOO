@@ -30,11 +30,10 @@ public class App
 
         connector.connect(jdbcUrl, username, password);
 
-        BookModel model = new BookModel();
-        List<Integer> authors = new ArrayList<Integer>();
-        authors.addAll(Arrays.asList(2597));
-        Book book = model.create("getTitle", "aisdunasidano", 201, 1.234, authors);
+        AuthorModel model = new AuthorModel();
+        
+        model.delete(5698, false);
 
-        System.out.println(book.getIsbn() + book.getPrice() + book.getPublisherId() + book.getTitle() + book.getPublisher().getName());
+        model.listAuthors().forEach(author -> System.out.println(author.getName()));
     }
 }
