@@ -4,7 +4,7 @@ CREATE TABLE Books (
   publisher_id int, 
   price DECIMAL(10,2),
   PRIMARY KEY (isbn), 
-  FOREIGN KEY (publisher_id) REFERENCES Publishers (publisher_id)
+  FOREIGN KEY (publisher_id) REFERENCES Publishers (publisher_id) ON DELETE SET NULL
 );
 INSERT INTO Books VALUES ('A Guide to the SQL Standard', '0-201-96426-0', '0201', 47.95);
 INSERT INTO Books VALUES ('A Pattern Language: Towns, Buildings, Construction', '0-19-501919-9', '019', 65.00);

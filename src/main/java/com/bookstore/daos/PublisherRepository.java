@@ -114,4 +114,18 @@ public class PublisherRepository {
 
         return -1;
     }
+
+    public void delete(int id, boolean cascade) {
+        final String query = "CALL deletePublisher(?, ?);";
+
+        try {
+            PreparedStatement stm = connection.prepareStatement(query);
+            stm.setInt(1, id);
+            stm.setBoolean(2, cascade);
+
+            stm.executeQuery();
+        } catch(Exception e) {
+            e.printStackTrace();
+        }
+    }
 }

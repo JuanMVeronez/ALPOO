@@ -30,4 +30,8 @@ public class PublisherModel {
 
         return publisher;
     }
+
+    public void delete(int id, boolean cascade) {
+        this.repository.delete(id, cascade);
+    }
 }
