@@ -12,8 +12,9 @@ public class AuthorModel {
         this.repository = new AuthorRepository();
     }
 
-    public List<Author> listAuthors() {
+    public List<Author> list() {
         List<Author> authors = this.repository.list();
+        authors.forEach(author -> System.out.println(author.getName()));
         return authors;
     }
 

@@ -7,12 +7,15 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import com.bookstore.controllers.AuthorController;
 import com.bookstore.entities.Author;
 import com.bookstore.entities.Book;
 import com.bookstore.entities.Publisher;
 import com.bookstore.models.AuthorModel;
 import com.bookstore.models.BookModel;
 import com.bookstore.models.PublisherModel;
+import com.bookstore.views.AuthorTableView;
+import com.bookstore.views.Container;
 
 public class App 
 {   
@@ -28,12 +31,9 @@ public class App
         String username = "admin";
         String password = "admin";
 
+        
         connector.connect(jdbcUrl, username, password);
 
-        BookModel model = new BookModel();
-        
-        model.delete("0-471-11709-9");
-
-        model.list().forEach(book -> System.out.println(book.getTitle()));
+        new AuthorController();
     }
 }
