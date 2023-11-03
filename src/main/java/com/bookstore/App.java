@@ -15,7 +15,6 @@ import com.bookstore.models.AuthorModel;
 import com.bookstore.models.BookModel;
 import com.bookstore.models.PublisherModel;
 import com.bookstore.views.AuthorTableView;
-import com.bookstore.views.Container;
 
 public class App 
 {   

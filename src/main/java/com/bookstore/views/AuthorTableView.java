@@ -1,16 +1,17 @@
 package com.bookstore.views;
 
-import javax.swing.JFrame;
-import javax.swing.JScrollPane;
-import javax.swing.JTable;
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionListener;
 
 import com.bookstore.entities.Author;
 import com.bookstore.views.models.AuthorTableModel;
 
 import java.util.List;
 
-public class AuthorTableView {
+public class AuthorTableView extends Component {
     private JFrame frame;
+    private JButton createButton;
     private JTable table;
     private AuthorTableModel model;
 
@@ -19,10 +20,15 @@ public class AuthorTableView {
         table = new JTable(model);
         frame = new JFrame("Tabela de Autores");
 
+        createButton = new JButton("Novo Autor");
+
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
+        frame.setLayout(new BorderLayout());
+        frame.add(createButton, BorderLayout.NORTH);
+        
         JScrollPane scrollPane = new JScrollPane(table);
-        frame.add(scrollPane);
+        frame.add(scrollPane, BorderLayout.CENTER);
 
         frame.pack();
         frame.setVisible(true);
@@ -30,6 +36,10 @@ public class AuthorTableView {
 
     public void updateTable(List<Author> authors) {
         model.updateTable(authors);
+    }
+
+    public void addCreateListener(ActionListener listener) {
+        createButton.addActionListener(listener);
     }
 }
 
