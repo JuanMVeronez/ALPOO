@@ -4,24 +4,24 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
 
-import com.bookstore.entities.Author;
-import com.bookstore.models.AuthorModel;
-import com.bookstore.views.author.AuthorCreateView;
-import com.bookstore.views.author.AuthorDeleteView;
-import com.bookstore.views.author.AuthorTableView;
+import com.bookstore.entities.Publisher;
+import com.bookstore.models.PublisherModel;
+import com.bookstore.views.publisher.PublisherCreateView;
+import com.bookstore.views.publisher.PublisherDeleteView;
+import com.bookstore.views.publisher.PublisherTableView;
 
-public class AuthorController {
-  private AuthorModel model;
+public class PublisherController {
+  private PublisherModel model;
 
-  private AuthorTableView view;
-  private AuthorCreateView createView;
-  private AuthorDeleteView deleteView;
+  private PublisherTableView view;
+  private PublisherCreateView createView;
+  private PublisherDeleteView deleteView;
 
-  List<Author> authors;
+  List<Publisher> authors;
 
-  public AuthorController() {
-    model = new AuthorModel();
-    view = new AuthorTableView();
+  public PublisherController() {
+    model = new PublisherModel();
+    view = new PublisherTableView();
 
     view.addCreateListener(new OpenAuthorCreateViewListener());
     view.addDeleteListener(new OpenAuthorDeleteViewListener());
@@ -33,14 +33,14 @@ public class AuthorController {
     view.updateTable(authors);
   }
 
-  public AuthorTableView getMainView() {
+  public PublisherTableView getMainView() {
     return view;
   }
 
   class OpenAuthorCreateViewListener implements ActionListener{
     @Override
     public void actionPerformed(ActionEvent e){
-      createView = new AuthorCreateView();
+      createView = new PublisherCreateView();
       createView.addCreateListener(new CreateAuthorListener());
     }
   }
@@ -48,7 +48,7 @@ public class AuthorController {
   class OpenAuthorDeleteViewListener implements ActionListener{
     @Override
     public void actionPerformed(ActionEvent e){
-      deleteView = new AuthorDeleteView();
+      deleteView = new PublisherDeleteView();
       deleteView.addDeleteListener(new DeleteAuthorListener());
       deleteView.setAuthorComboBox(authors);
     }
@@ -58,12 +58,12 @@ public class AuthorController {
     @Override
     public void actionPerformed(ActionEvent e) {
       String name = createView.getName();
-      String fname = createView.getFname();
+      String url = createView.getUrl();
 
-      if (name.isEmpty() || fname.isEmpty()) {
-        createView.throwError("Nome e Sobrenome são campos obrigatórios.");
+      if (name.isEmpty() || url.isEmpty()) {
+        createView.throwError("Nome e Url são campos obrigatórios.");
       } else {
-        model.create(name, fname);
+        model.create(name, url);
         
         updateAuthorTable();
         createView.close();
@@ -74,10 +74,10 @@ public class AuthorController {
   class DeleteAuthorListener implements ActionListener{
     @Override
     public void actionPerformed(ActionEvent e) {
-      Author author = deleteView.getAuthorToDelete();
+      Publisher author = deleteView.getAuthorToDelete();
       boolean isCascade = deleteView.getDeleteIsCascade();
 
-      model.delete(author.getAuthorId(), isCascade);
+      model.delete(author.getPublisherId(), isCascade);
       updateAuthorTable();
       deleteView.close();
     }

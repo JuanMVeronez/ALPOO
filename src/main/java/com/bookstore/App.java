@@ -1,6 +1,6 @@
 package com.bookstore;
 
-import com.bookstore.controllers.AuthorController;
+import com.bookstore.views.MainView;
 
 public class App 
 {   
@@ -19,6 +19,6 @@ public class App
         
         connector.connect(jdbcUrl, username, password);
 
-        new AuthorController();
+        new MainView();
     }
 }

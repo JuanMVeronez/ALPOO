@@ -34,4 +34,26 @@ public class Publisher {
     public String getUrl() {
         return url;
     }
+
+    @Override
+    public String toString() {
+        return this.getName();
+    }
+
+    @Override
+  public boolean equals(Object obj) {
+    if (this == obj) {
+      return true;
+    }
+    if (obj == null || getClass() != obj.getClass()) {
+      return false;
+    }
+    Publisher publisher = (Publisher) obj;
+    return publisherId == publisher.publisherId;
+  }
+
+  @Override
+  public int hashCode() {
+    return publisherId;
+  }
 }

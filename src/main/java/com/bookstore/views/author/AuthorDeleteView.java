@@ -1,4 +1,4 @@
-package com.bookstore.views;
+package com.bookstore.views.author;
 
 import java.awt.Component;
 import java.awt.GridLayout;
@@ -38,6 +38,9 @@ public class AuthorDeleteView extends Component {
 
     panel.add(new JLabel("Opção de Exclusão:"));
     panel.add(deleteOptionComboBox);
+
+    deleteOptionComboBox.addItem(new DeleteMode("Excluir Autor", false));
+    deleteOptionComboBox.addItem(new DeleteMode("Excluir Autor e Obras", true));
 
     panel.add(deleteButton);
 

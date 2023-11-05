@@ -1,4 +1,4 @@
-package com.bookstore.views.models;
+package com.bookstore.views.author.models;
 
 import javax.swing.table.AbstractTableModel;
 
@@ -8,7 +8,7 @@ import com.bookstore.entities.Author;
 
 public class AuthorTableModel extends AbstractTableModel {
     private List<Author> authors;
-    private String[] columnNames = { "ID", "Nome", "Sobrenome" };
+    private String[] columnNames = { "Id", "Nome", "Sobrenome" };
 
     public AuthorTableModel() {
       authors = new ArrayList<>();

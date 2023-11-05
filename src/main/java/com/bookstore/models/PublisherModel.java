@@ -1,6 +1,5 @@
 package com.bookstore.models;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import com.bookstore.daos.PublisherRepository;
@@ -13,15 +12,9 @@ public class PublisherModel {
         this.repository = new PublisherRepository();
     }
 
-    public List<String> listNames() {
-        List<String> names = new ArrayList<String>();
+    public List<Publisher> list() {
         List<Publisher> publishers = this.repository.list();
-        
-        for (Publisher publisher : publishers) {
-            names.add(publisher.getName());
-        }
-
-        return names;
+        return publishers;
     }
 
     public Publisher create(String name, String url) {

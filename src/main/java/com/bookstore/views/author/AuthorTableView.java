@@ -1,33 +1,25 @@
-package com.bookstore.views;
+package com.bookstore.views.author;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
 
 import com.bookstore.entities.Author;
-import com.bookstore.views.models.AuthorTableModel;
+import com.bookstore.views.author.models.AuthorTableModel;
 
 import java.util.List;
 
-public class AuthorTableView extends Component {
-    private JFrame frame;
+public class AuthorTableView extends JPanel {
     private JButton createButton;
     private JButton deleteButton;
     private JTable table;
     private AuthorTableModel model;
 
     public AuthorTableView() {
-        frame = new JFrame("Tabela de Autores");
-
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setLayout(new BorderLayout());
+        setLayout(new BorderLayout());
         
         renderTable();
         renderActionButtons();
-
-        frame.pack();
-        frame.setLocationRelativeTo(null);
-        frame.setVisible(true);
     }
 
     public void renderTable() {
@@ -36,7 +28,7 @@ public class AuthorTableView extends Component {
         
         JScrollPane scrollPane = new JScrollPane(table);
 
-        frame.add(scrollPane, BorderLayout.CENTER);
+        add(scrollPane, BorderLayout.CENTER);
     }
 
     public void renderActionButtons() {
@@ -47,7 +39,7 @@ public class AuthorTableView extends Component {
         buttonPanel.add(createButton);
         buttonPanel.add(deleteButton);
 
-        frame.add(buttonPanel, BorderLayout.SOUTH);
+        add(buttonPanel, BorderLayout.SOUTH);
     }
 
     public void updateTable(List<Author> authors) {

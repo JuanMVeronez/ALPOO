@@ -1,4 +1,4 @@
-package com.bookstore.views;
+package com.bookstore.views.author;
 
 import javax.swing.*;
 import java.awt.*;
@@ -11,7 +11,7 @@ public class AuthorCreateView extends Component {
   private JButton createButton;
 
   public AuthorCreateView() {
-    frame = new JFrame("Criar Autor");
+    frame = new JFrame("Novo Autor");
     frame.setSize(400, 120);
     frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
@@ -32,7 +32,7 @@ public class AuthorCreateView extends Component {
     panel.add(new JLabel("Sobrenome:"));
     panel.add(fnameField);
     
-    createButton = new JButton("Criar Autor");
+    createButton = new JButton("Adicionar");
     panel.add(createButton);
 
     frame.add(panel);
