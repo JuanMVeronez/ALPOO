@@ -12,7 +12,7 @@ import com.bookstore.entities.Publisher;
 public class PublisherDeleteView extends Component {
   private JFrame frame;
   private JButton deleteButton;
-  private JComboBox<Publisher> authorComboBox;
+  private JComboBox<Publisher> bookComboBox;
   private JComboBox<DeleteMode> deleteOptionComboBox;
 
   public PublisherDeleteView() {
@@ -29,12 +29,12 @@ public class PublisherDeleteView extends Component {
   public void renderFields() {
     JPanel panel = new JPanel(new GridLayout(3, 2));
 
-    authorComboBox = new JComboBox<Publisher>();
+    bookComboBox = new JComboBox<Publisher>();
     deleteOptionComboBox = new JComboBox<DeleteMode>();
     deleteButton = new JButton("Deletar Editora");
 
     panel.add(new JLabel("Selecione a Editora:"));
-    panel.add(authorComboBox);
+    panel.add(bookComboBox);
 
     panel.add(new JLabel("Opção de Exclusão:"));
     panel.add(deleteOptionComboBox);
@@ -48,7 +48,7 @@ public class PublisherDeleteView extends Component {
   }
 
   public Publisher getToDelete() {
-    return (Publisher) authorComboBox.getSelectedItem();
+    return (Publisher) bookComboBox.getSelectedItem();
   }
 
   public boolean getDeleteIsCascade() {
@@ -60,8 +60,8 @@ public class PublisherDeleteView extends Component {
     deleteButton.addActionListener(listener);
   }
 
-  public void setAuthorComboBox(List<Publisher> publishers) {
-    publishers.forEach(publisher -> authorComboBox.addItem(publisher));
+  public void setBookComboBox(List<Publisher> publishers) {
+    publishers.forEach(publisher -> bookComboBox.addItem(publisher));
   }
 
   public void close() {

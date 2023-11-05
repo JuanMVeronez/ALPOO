@@ -41,7 +41,7 @@ public class AuthorController {
     @Override
     public void actionPerformed(ActionEvent e){
       createView = new AuthorCreateView();
-      createView.addCreateListener(new CreateAuthorListener());
+      createView.addCreateListener(new CreateListener());
     }
   }
 
@@ -49,12 +49,12 @@ public class AuthorController {
     @Override
     public void actionPerformed(ActionEvent e){
       deleteView = new AuthorDeleteView();
-      deleteView.addDeleteListener(new DeleteAuthorListener());
+      deleteView.addDeleteListener(new DeleteListener());
       deleteView.setAuthorComboBox(authors);
     }
   }
 
-  class CreateAuthorListener implements ActionListener{
+  class CreateListener implements ActionListener{
     @Override
     public void actionPerformed(ActionEvent e) {
       String name = createView.getName();
@@ -71,7 +71,7 @@ public class AuthorController {
     }
   }
 
-  class DeleteAuthorListener implements ActionListener{
+  class DeleteListener implements ActionListener{
     @Override
     public void actionPerformed(ActionEvent e) {
       Author author = deleteView.getToDelete();

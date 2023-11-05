@@ -3,25 +3,31 @@ package com.bookstore.controllers;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
+import java.util.stream.Collectors;
 
+import com.bookstore.entities.Author;
 import com.bookstore.entities.Book;
+import com.bookstore.entities.Publisher;
+import com.bookstore.models.AuthorModel;
 import com.bookstore.models.BookModel;
+import com.bookstore.models.PublisherModel;
+import com.bookstore.views.book.BookCreateView;
 import com.bookstore.views.book.BookDeleteView;
 import com.bookstore.views.book.BookTableView;
 
 public class BookController {
-  private BookModel model;
+  private BookModel model = new BookModel();
+  private AuthorModel authorModel = new AuthorModel();
+  private PublisherModel publisherModel = new PublisherModel();
 
   private BookTableView view;
-  // private BookCreateView createView;
+  private BookCreateView createView;
   private BookDeleteView deleteView;
 
   List<Book> books;
 
   public BookController() {
-    model = new BookModel();
     view = new BookTableView();
-
     view.addCreateListener(new OpenAuthorCreateViewListener());
     view.addDeleteListener(new OpenAuthorDeleteViewListener());
     updateAuthorTable();
@@ -39,8 +45,10 @@ public class BookController {
   class OpenAuthorCreateViewListener implements ActionListener{
     @Override
     public void actionPerformed(ActionEvent e){
-      // createView = new BookCreateView();
-      // createView.addCreateListener(new CreateAuthorListener());
+      createView = new BookCreateView();
+      createView.addCreateListener(new CreateListener());
+      createView.setAuthorList(authorModel.list());
+      createView.setPublisherComboBox(publisherModel.list());
     }
   }
 
@@ -49,26 +57,34 @@ public class BookController {
     public void actionPerformed(ActionEvent e){
       deleteView = new BookDeleteView();
       deleteView.addDeleteListener(new DeleteListener());
-      deleteView.setAuthorComboBox(books);
+      deleteView.setBookComboBox(books);
     }
   }
 
-  // class CreateAuthorListener implements ActionListener{
-  //   @Override
-  //   public void actionPerformed(ActionEvent e) {
-  //     String name = createView.getName();
-  //     String url = createView.getUrl();
+  class CreateListener implements ActionListener{
+    @Override
+    public void actionPerformed(ActionEvent e) {
+      String title = createView.getTitle();
+      String isbn = createView.getIsbn();
+      double price = createView.getPrice();
+      Publisher publisher = createView.getPublisher();
+      List<Author> authors = createView.getAuthors();
 
-  //     if (name.isEmpty() || url.isEmpty()) {
-  //       createView.throwError("Nome e Url são campos obrigatórios.");
-  //     } else {
-  //       model.create(name, url);
+      if (title.isEmpty() || isbn.isEmpty() || price == 0) {
+        createView.throwError("Todos os campos de texto são obrigatórios.");
+      } else if (publisher == null) {
+        createView.throwError("Editora é um campo obrigatório.");
+      } else if (authors.isEmpty()) {
+        createView.throwError("Autor é um campo obrigatório.");
+      } else {
+        List<Integer> authorsId = authors.stream().map(author -> author.getAuthorId()).collect(Collectors.toList());
+        model.create(title, isbn, publisher.getPublisherId(), price, authorsId);
         
-  //       updateAuthorTable();
-  //       createView.close();
-  //     }
-  //   }
-  // }
+        updateAuthorTable();
+        createView.close();
+      }
+    }
+  }
 
   class DeleteListener implements ActionListener{
     @Override

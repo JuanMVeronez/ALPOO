@@ -7,7 +7,7 @@ import java.awt.event.ActionListener;
 public class PublisherCreateView extends Component {
   private JFrame frame;
   private JTextField nameField;
-  private JTextField fnameField;
+  private JTextField urlField;
   private JButton createButton;
 
   public PublisherCreateView() {
@@ -25,12 +25,12 @@ public class PublisherCreateView extends Component {
     JPanel panel = new JPanel(new GridLayout(3, 2));
     
     nameField = new JTextField(10);
-    fnameField = new JTextField(20);
+    urlField = new JTextField(20);
     
     panel.add(new JLabel("Nome:"));
     panel.add(nameField);
     panel.add(new JLabel("Url:"));
-    panel.add(fnameField);
+    panel.add(urlField);
     
     createButton = new JButton("Adicionar");
     panel.add(createButton);
@@ -43,7 +43,7 @@ public class PublisherCreateView extends Component {
   }
 
   public String getUrl() {
-    return fnameField.getText().trim();
+    return urlField.getText().trim();
   }
 
   public void addCreateListener(ActionListener listener) {

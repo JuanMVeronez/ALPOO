@@ -8,7 +8,7 @@ import com.bookstore.entities.Book;
 
 public class BookTableModel extends AbstractTableModel {
     private List<Book> books;
-    private String[] columnNames = { "Isbn", "Título", "Preço" };
+    private String[] columnNames = { "ISBN", "Título", "Preço" };
 
     public BookTableModel() {
       books = new ArrayList<>();
