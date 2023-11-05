@@ -25,10 +25,10 @@ public class PublisherController {
 
     view.addCreateListener(new OpenAuthorCreateViewListener());
     view.addDeleteListener(new OpenAuthorDeleteViewListener());
-    updateAuthorTable();
+    updateTable();
   }
 
-  public void updateAuthorTable() {
+  public void updateTable() {
     authors = model.list();
     view.updateTable(authors);
   }
@@ -65,7 +65,7 @@ public class PublisherController {
       } else {
         model.create(name, url);
         
-        updateAuthorTable();
+        updateTable();
         createView.close();
       }
     }
@@ -78,7 +78,7 @@ public class PublisherController {
       boolean isCascade = deleteView.getDeleteIsCascade();
 
       model.delete(author.getPublisherId(), isCascade);
-      updateAuthorTable();
+      updateTable();
       deleteView.close();
     }
   }

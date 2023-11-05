@@ -5,12 +5,13 @@ import javax.swing.*;
 import com.bookstore.controllers.AuthorController;
 import com.bookstore.controllers.BookController;
 import com.bookstore.controllers.PublisherController;
-import com.bookstore.views.author.AuthorTableView;
-import com.bookstore.views.book.BookTableView;
-import com.bookstore.views.publisher.PublisherTableView;
 
 public class MainView {
   private JFrame frame;
+
+  private PublisherController publishers;
+  private AuthorController authors;
+  private BookController books;
 
   public MainView() {
     frame = new JFrame("Sistema da Livraria");
@@ -18,20 +19,26 @@ public class MainView {
     
     JTabbedPane tabbedPane = new JTabbedPane();
 
-    PublisherTableView publishersView = new PublisherController().getMainView();
-    tabbedPane.addTab("Editoras", publishersView);
+    publishers = new PublisherController();
+    tabbedPane.addTab("Editoras", publishers.getMainView());
 
-    AuthorTableView authorsView = new AuthorController().getMainView();
-    tabbedPane.addTab("Autores", authorsView);
+    authors = new AuthorController();
+    tabbedPane.addTab("Autores", authors.getMainView());
 
-    BookTableView booksView = new BookController().getMainView();
-    tabbedPane.addTab("Livros", booksView);
+    books = new BookController();
+    tabbedPane.addTab("Livros", books.getMainView());
 
-
+    tabbedPane.addChangeListener(l -> updateViews());
     frame.add(tabbedPane);
 
     frame.pack();
     frame.setLocationRelativeTo(null);
     frame.setVisible(true);
+  }
+
+  public void updateViews() {
+    publishers.updateTable();
+    authors.updateTable();
+    books.updateTable();
   }
 }

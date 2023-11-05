@@ -25,10 +25,10 @@ public class AuthorController {
 
     view.addCreateListener(new OpenAuthorCreateViewListener());
     view.addDeleteListener(new OpenAuthorDeleteViewListener());
-    updateAuthorTable();
+    updateTable();
   }
 
-  public void updateAuthorTable() {
+  public void updateTable() {
     authors = model.list();
     view.updateTable(authors);
   }
@@ -65,7 +65,7 @@ public class AuthorController {
       } else {
         model.create(name, fname);
         
-        updateAuthorTable();
+        updateTable();
         createView.close();
       }
     }
@@ -78,7 +78,7 @@ public class AuthorController {
       boolean isCascade = deleteView.getDeleteIsCascade();
 
       model.delete(author.getAuthorId(), isCascade);
-      updateAuthorTable();
+      updateTable();
       deleteView.close();
     }
   }

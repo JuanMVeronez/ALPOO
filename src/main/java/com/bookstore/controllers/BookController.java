@@ -30,10 +30,10 @@ public class BookController {
     view = new BookTableView();
     view.addCreateListener(new OpenAuthorCreateViewListener());
     view.addDeleteListener(new OpenAuthorDeleteViewListener());
-    updateAuthorTable();
+    updateTable();
   }
 
-  public void updateAuthorTable() {
+  public void updateTable() {
     books = model.list();
     view.updateTable(books);
   }
@@ -80,7 +80,7 @@ public class BookController {
         List<Integer> authorsId = authors.stream().map(author -> author.getAuthorId()).collect(Collectors.toList());
         model.create(title, isbn, publisher.getPublisherId(), price, authorsId);
         
-        updateAuthorTable();
+        updateTable();
         createView.close();
       }
     }
@@ -92,7 +92,7 @@ public class BookController {
       Book book = deleteView.getToDelete();
       
       model.delete(book.getIsbn());
-      updateAuthorTable();
+      updateTable();
       deleteView.close();
     }
   }
