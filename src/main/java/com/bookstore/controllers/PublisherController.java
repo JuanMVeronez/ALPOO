@@ -74,7 +74,7 @@ public class PublisherController {
   class DeleteAuthorListener implements ActionListener{
     @Override
     public void actionPerformed(ActionEvent e) {
-      Publisher author = deleteView.getAuthorToDelete();
+      Publisher author = deleteView.getToDelete();
       boolean isCascade = deleteView.getDeleteIsCascade();
 
       model.delete(author.getPublisherId(), isCascade);

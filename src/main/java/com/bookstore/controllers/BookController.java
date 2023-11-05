@@ -6,6 +6,7 @@ import java.util.List;
 
 import com.bookstore.entities.Book;
 import com.bookstore.models.BookModel;
+import com.bookstore.views.book.BookDeleteView;
 import com.bookstore.views.book.BookTableView;
 
 public class BookController {
@@ -13,7 +14,7 @@ public class BookController {
 
   private BookTableView view;
   // private BookCreateView createView;
-  // private BookDeleteView deleteView;
+  private BookDeleteView deleteView;
 
   List<Book> books;
 
@@ -46,9 +47,9 @@ public class BookController {
   class OpenAuthorDeleteViewListener implements ActionListener{
     @Override
     public void actionPerformed(ActionEvent e){
-      // deleteView = new BookDeleteView();
-      // deleteView.addDeleteListener(new DeleteAuthorListener());
-      // deleteView.setAuthorComboBox(books);
+      deleteView = new BookDeleteView();
+      deleteView.addDeleteListener(new DeleteListener());
+      deleteView.setAuthorComboBox(books);
     }
   }
 
@@ -69,15 +70,14 @@ public class BookController {
   //   }
   // }
 
-  // class DeleteAuthorListener implements ActionListener{
-  //   @Override
-  //   public void actionPerformed(ActionEvent e) {
-  //     Book author = deleteView.getAuthorToDelete();
-  //     boolean isCascade = deleteView.getDeleteIsCascade();
-
-  //     model.delete(author.getBookId(), isCascade);
-  //     updateAuthorTable();
-  //     deleteView.close();
-  //   }
-  // }
+  class DeleteListener implements ActionListener{
+    @Override
+    public void actionPerformed(ActionEvent e) {
+      Book book = deleteView.getToDelete();
+      
+      model.delete(book.getIsbn());
+      updateAuthorTable();
+      deleteView.close();
+    }
+  }
 }

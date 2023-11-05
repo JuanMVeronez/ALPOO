@@ -47,7 +47,7 @@ public class PublisherDeleteView extends Component {
     frame.add(panel);
   }
 
-  public Publisher getAuthorToDelete() {
+  public Publisher getToDelete() {
     return (Publisher) authorComboBox.getSelectedItem();
   }
 
@@ -61,9 +61,7 @@ public class PublisherDeleteView extends Component {
   }
 
   public void setAuthorComboBox(List<Publisher> publishers) {
-    publishers.forEach(publisher -> {
-      authorComboBox.addItem(publisher);
-    });
+    publishers.forEach(publisher -> authorComboBox.addItem(publisher));
   }
 
   public void close() {

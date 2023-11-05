@@ -47,7 +47,7 @@ public class AuthorDeleteView extends Component {
     frame.add(panel);
   }
 
-  public Author getAuthorToDelete() {
+  public Author getToDelete() {
     return (Author) authorComboBox.getSelectedItem();
   }
 
@@ -61,9 +61,7 @@ public class AuthorDeleteView extends Component {
   }
 
   public void setAuthorComboBox(List<Author> authors) {
-    authors.forEach(author -> {
-      authorComboBox.addItem(author);
-    });
+    authors.forEach(author -> authorComboBox.addItem(author));
   }
 
   public void close() {

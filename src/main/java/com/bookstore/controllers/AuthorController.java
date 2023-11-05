@@ -74,7 +74,7 @@ public class AuthorController {
   class DeleteAuthorListener implements ActionListener{
     @Override
     public void actionPerformed(ActionEvent e) {
-      Author author = deleteView.getAuthorToDelete();
+      Author author = deleteView.getToDelete();
       boolean isCascade = deleteView.getDeleteIsCascade();
 
       model.delete(author.getAuthorId(), isCascade);
