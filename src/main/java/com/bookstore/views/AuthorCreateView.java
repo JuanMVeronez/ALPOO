@@ -15,19 +15,27 @@ public class AuthorCreateView extends Component {
     frame.setSize(400, 120);
     frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
+    renderFields();
+    
+    frame.setLocationRelativeTo(null);
+    frame.setVisible(true);
+  }
+
+  public void renderFields() {
+    JPanel panel = new JPanel(new GridLayout(3, 2));
+    
     nameField = new JTextField(10);
     fnameField = new JTextField(20);
-    createButton = new JButton("Criar Autor");
-
-    JPanel panel = new JPanel(new GridLayout(3, 2));
+    
     panel.add(new JLabel("Nome:"));
     panel.add(nameField);
     panel.add(new JLabel("Sobrenome:"));
     panel.add(fnameField);
+    
+    createButton = new JButton("Criar Autor");
     panel.add(createButton);
 
     frame.add(panel);
-    frame.setVisible(true);
   }
 
   public String getName() {

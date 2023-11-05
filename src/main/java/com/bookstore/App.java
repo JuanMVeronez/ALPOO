@@ -1,20 +1,6 @@
 package com.bookstore;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
 import com.bookstore.controllers.AuthorController;
-import com.bookstore.entities.Author;
-import com.bookstore.entities.Book;
-import com.bookstore.entities.Publisher;
-import com.bookstore.models.AuthorModel;
-import com.bookstore.models.BookModel;
-import com.bookstore.models.PublisherModel;
-import com.bookstore.views.AuthorTableView;
 
 public class App 
 {   
