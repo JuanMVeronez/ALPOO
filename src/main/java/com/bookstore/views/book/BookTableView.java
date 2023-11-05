@@ -12,6 +12,7 @@ import java.awt.event.ActionListener;
 import java.util.List;
 
 public class BookTableView extends JPanel {
+    private JButton detailsButton;
     private JButton createButton;
     private JButton deleteButton;
     private JTable table;
@@ -34,10 +35,12 @@ public class BookTableView extends JPanel {
     }
 
     public void renderActionButtons() {
+        detailsButton = new JButton("Detalhes do Livro");        
         createButton = new JButton("Novo Livro");
         deleteButton = new JButton("Deletar Livro");
 
         JPanel buttonPanel = new JPanel();
+        buttonPanel.add(detailsButton);        
         buttonPanel.add(createButton);
         buttonPanel.add(deleteButton);
 
@@ -46,6 +49,10 @@ public class BookTableView extends JPanel {
 
     public void updateTable(List<Book> books) {
         model.updateTable(books);
+    }
+
+    public void addDetailsListener(ActionListener listener) {
+        detailsButton.addActionListener(listener);
     }
 
     public void addCreateListener(ActionListener listener) {

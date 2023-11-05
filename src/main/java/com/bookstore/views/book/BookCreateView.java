@@ -23,7 +23,7 @@ public class BookCreateView extends Component {
   private JButton createButton;
 
   public BookCreateView() {
-    frame = new JFrame("Nova Editora");
+    frame = new JFrame("Novo Livro");
     frame.setSize(400, 280);
     frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 

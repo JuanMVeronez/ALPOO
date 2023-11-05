@@ -13,6 +13,7 @@ import com.bookstore.models.BookModel;
 import com.bookstore.models.PublisherModel;
 import com.bookstore.views.book.BookCreateView;
 import com.bookstore.views.book.BookDeleteView;
+import com.bookstore.views.book.BookDetailsView;
 import com.bookstore.views.book.BookTableView;
 
 public class BookController {
@@ -22,7 +23,8 @@ public class BookController {
 
   private BookTableView view;
   private BookCreateView createView;
-  private BookDeleteView deleteView;
+  private BookDeleteView deleteView;  
+  private BookDetailsView detailsView;
 
   List<Book> books;
 
@@ -30,6 +32,10 @@ public class BookController {
     view = new BookTableView();
     view.addCreateListener(new OpenAuthorCreateViewListener());
     view.addDeleteListener(new OpenAuthorDeleteViewListener());
+    view.addDetailsListener(e -> {
+      detailsView = new BookDetailsView(this);
+      detailsView.setBookComboBox(books);
+    });
     updateTable();
   }
 
@@ -95,5 +101,9 @@ public class BookController {
       updateTable();
       deleteView.close();
     }
+  }
+
+  public Book getBookDetails(Book book) {
+    return model.read(book.getIsbn());
   }
 }
