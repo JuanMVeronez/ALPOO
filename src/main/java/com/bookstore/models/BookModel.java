@@ -1,9 +1,7 @@
 package com.bookstore.models;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import com.bookstore.daos.BookRepository;
 import com.bookstore.daos.Repositories;
 import com.bookstore.entities.Author;
 import com.bookstore.entities.Book;

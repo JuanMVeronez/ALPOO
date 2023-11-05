@@ -1,44 +1,44 @@
 package com.bookstore.entities;
 
 public class Publisher {
-    int publisherId;
-    String name;
-    String url;
+  int publisherId;
+  String name;
+  String url;
 
-    public Publisher(
-        int publisherId,
-        String name,
-        String url
-    ) {
-        this.publisherId = publisherId;
-        this.name = name;
-        this.url = url;
-    }
+  public Publisher(
+    int publisherId,
+    String name,
+    String url
+  ) {
+    this.publisherId = publisherId;
+    this.name = name;
+    this.url = url;
+  }
 
-    public Publisher(
-        String name,
-        String url
-    ) {
-        this.name = name;
-        this.url = url;
-    }
+  public Publisher(
+    String name,
+    String url
+  ) {
+    this.name = name;
+    this.url = url;
+  }
 
-    public int getPublisherId() {
-        return publisherId;
-    }
+  public int getPublisherId() {
+    return publisherId;
+  }
 
-    public String getName() {
-        return name;
-    }
+  public String getName() {
+    return name;
+  }
 
-    public String getUrl() {
-        return url;
-    }
+  public String getUrl() {
+    return url;
+  }
 
-    @Override
-    public String toString() {
-        return this.getName();
-    }
+  @Override
+  public String toString() {
+    return this.getName();
+  }
 
     @Override
   public boolean equals(Object obj) {

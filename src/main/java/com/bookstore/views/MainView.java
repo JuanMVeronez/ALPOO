@@ -3,8 +3,10 @@ package com.bookstore.views;
 import javax.swing.*;
 
 import com.bookstore.controllers.AuthorController;
+import com.bookstore.controllers.BookController;
 import com.bookstore.controllers.PublisherController;
 import com.bookstore.views.author.AuthorTableView;
+import com.bookstore.views.book.BookTableView;
 import com.bookstore.views.publisher.PublisherTableView;
 
 public class MainView {
@@ -21,6 +23,10 @@ public class MainView {
 
     AuthorTableView authorsView = new AuthorController().getMainView();
     tabbedPane.addTab("Autores", authorsView);
+
+    BookTableView booksView = new BookController().getMainView();
+    tabbedPane.addTab("Livros", booksView);
+
 
     frame.add(tabbedPane);
 
