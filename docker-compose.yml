@@ -1,13 +1,10 @@
-version: '1.2'
+version: "1.2"
 services:
   mysql:
     image: mysql:latest
     container_name: bookstore-database
-    environment:
-      MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: bookstore
-      MYSQL_USER: admin
-      MYSQL_PASSWORD: admin
+    env_file:
+      - .env
     ports:
       - "3306:3306"
     volumes:
