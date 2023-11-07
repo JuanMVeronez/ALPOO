@@ -9,7 +9,7 @@ import java.awt.event.ItemListener;
 
 import javax.swing.*;
 
-import com.bookstore.controllers.BookController;
+import com.bookstore.controllers.impl.BookController;
 import com.bookstore.entities.Author;
 import com.bookstore.entities.Book;
 

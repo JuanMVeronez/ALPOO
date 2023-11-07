@@ -2,9 +2,9 @@ package com.bookstore.views;
 
 import javax.swing.*;
 
-import com.bookstore.controllers.AuthorController;
-import com.bookstore.controllers.BookController;
-import com.bookstore.controllers.PublisherController;
+import com.bookstore.controllers.impl.AuthorController;
+import com.bookstore.controllers.impl.BookController;
+import com.bookstore.controllers.impl.PublisherController;
 
 public class MainView {
   private JFrame frame;
@@ -19,14 +19,14 @@ public class MainView {
     
     JTabbedPane tabbedPane = new JTabbedPane();
 
+    books = new BookController();
+    tabbedPane.addTab("Livros", books.getMain());
+
     publishers = new PublisherController();
-    tabbedPane.addTab("Editoras", publishers.getMainView());
+    tabbedPane.addTab("Editoras", publishers.getMain());
 
     authors = new AuthorController();
-    tabbedPane.addTab("Autores", authors.getMainView());
-
-    books = new BookController();
-    tabbedPane.addTab("Livros", books.getMainView());
+    tabbedPane.addTab("Autores", authors.getMain());
 
     tabbedPane.addChangeListener(l -> updateViews());
     frame.add(tabbedPane);
