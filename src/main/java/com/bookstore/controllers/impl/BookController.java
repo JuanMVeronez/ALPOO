@@ -4,14 +4,16 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import com.bookstore.controllers.Controller;
+import com.bookstore.dtos.create.impl.CreateBookDto;
+import com.bookstore.dtos.delete.impl.DeleteBookDto;
 import com.bookstore.entities.Author;
 import com.bookstore.entities.Book;
 import com.bookstore.entities.Publisher;
 import com.bookstore.interfaces.CreateListener;
 import com.bookstore.interfaces.DeleteListener;
-import com.bookstore.models.AuthorModel;
-import com.bookstore.models.BookModel;
-import com.bookstore.models.PublisherModel;
+import com.bookstore.models.impl.AuthorModel;
+import com.bookstore.models.impl.BookModel;
+import com.bookstore.models.impl.PublisherModel;
 import com.bookstore.views.book.BookCreateView;
 import com.bookstore.views.book.BookDeleteView;
 import com.bookstore.views.book.BookDetailsView;
@@ -96,7 +98,7 @@ public class BookController implements Controller<BookTableView> {
       createView.throwError("Autor é um campo obrigatório.");
     } else {
       List<Integer> authorsId = authors.stream().map(author -> author.getAuthorId()).collect(Collectors.toList());
-      model.create(title, isbn, publisher.getPublisherId(), price, authorsId);
+      model.create(new CreateBookDto(title, isbn, publisher.getPublisherId(), price, authorsId));
       
       updateTable();
       createView.close();
@@ -107,7 +109,7 @@ public class BookController implements Controller<BookTableView> {
   public void delete() {
     Book book = deleteView.getToDelete();
       
-    model.delete(book.getIsbn());
+    model.delete(new DeleteBookDto(book.getIsbn()));
     updateTable();
     deleteView.close();
   }

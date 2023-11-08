@@ -3,10 +3,12 @@ package com.bookstore.controllers.impl;
 import java.util.List;
 
 import com.bookstore.controllers.Controller;
+import com.bookstore.dtos.create.impl.CreatePublisherDto;
+import com.bookstore.dtos.delete.impl.DeletePublisherDto;
 import com.bookstore.entities.Publisher;
 import com.bookstore.interfaces.CreateListener;
 import com.bookstore.interfaces.DeleteListener;
-import com.bookstore.models.PublisherModel;
+import com.bookstore.models.impl.PublisherModel;
 import com.bookstore.views.publisher.PublisherCreateView;
 import com.bookstore.views.publisher.PublisherDeleteView;
 import com.bookstore.views.publisher.PublisherTableView;
@@ -70,7 +72,7 @@ public class PublisherController implements Controller<PublisherTableView> {
     if (name.isEmpty() || url.isEmpty()) {
       createView.throwError("Nome e URL são campos obrigatórios.");
     } else {
-      model.create(name, url);
+      model.create(new CreatePublisherDto(name, url));
 
       updateTable();
       createView.close();
@@ -82,7 +84,7 @@ public class PublisherController implements Controller<PublisherTableView> {
     Publisher publisher = deleteView.getToDelete();
     boolean isCascade = deleteView.getDeleteIsCascade();
 
-    model.delete(publisher.getPublisherId(), isCascade);
+    model.delete(new DeletePublisherDto(publisher.getPublisherId(), isCascade));
     updateTable();
     deleteView.close();
   }

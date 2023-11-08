@@ -3,10 +3,12 @@ package com.bookstore.controllers.impl;
 import java.util.List;
 
 import com.bookstore.controllers.Controller;
+import com.bookstore.dtos.create.impl.CreateAuthorDto;
+import com.bookstore.dtos.delete.impl.DeleteAuthorDto;
 import com.bookstore.entities.Author;
 import com.bookstore.interfaces.CreateListener;
 import com.bookstore.interfaces.DeleteListener;
-import com.bookstore.models.AuthorModel;
+import com.bookstore.models.impl.AuthorModel;
 import com.bookstore.views.author.AuthorCreateView;
 import com.bookstore.views.author.AuthorDeleteView;
 import com.bookstore.views.author.AuthorTableView;
@@ -71,7 +73,7 @@ public class AuthorController implements Controller<AuthorTableView> {
     if (name.isEmpty() || fname.isEmpty()) {
       createView.throwError("Nome e Sobrenome são campos obrigatórios.");
     } else {
-      model.create(name, fname);
+      model.create(new CreateAuthorDto(name, fname));
       
       updateTable();
       createView.close();
@@ -83,7 +85,7 @@ public class AuthorController implements Controller<AuthorTableView> {
     Author author = deleteView.getToDelete();
     boolean isCascade = deleteView.getDeleteIsCascade();
 
-    model.delete(author.getAuthorId(), isCascade);
+    model.delete(new DeleteAuthorDto(author.getAuthorId(), isCascade));
     updateTable();
     deleteView.close();
   }
