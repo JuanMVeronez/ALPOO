@@ -1,24 +1,21 @@
-package com.bookstore.views.book;
+package com.bookstore.views.impl.author;
 
 import javax.swing.*;
-
-import com.bookstore.entities.Book;
-import com.bookstore.views.book.models.BookTableModel;
-
 import java.awt.*;
 import java.awt.event.ActionListener;
 
+import com.bookstore.entities.Author;
+import com.bookstore.views.impl.author.models.AuthorTableModel;
 
 import java.util.List;
 
-public class BookTableView extends JPanel {
-    private JButton detailsButton;
+public class AuthorTableView extends JPanel {
     private JButton createButton;
     private JButton deleteButton;
     private JTable table;
-    private BookTableModel model;
+    private AuthorTableModel model;
 
-    public BookTableView() {
+    public AuthorTableView() {
         setLayout(new BorderLayout());
         
         renderTable();
@@ -26,7 +23,7 @@ public class BookTableView extends JPanel {
     }
 
     public void renderTable() {
-        model = new BookTableModel();
+        model = new AuthorTableModel();
         table = new JTable(model);
         
         JScrollPane scrollPane = new JScrollPane(table);
@@ -35,24 +32,18 @@ public class BookTableView extends JPanel {
     }
 
     public void renderActionButtons() {
-        detailsButton = new JButton("Detalhes do Livro");        
-        createButton = new JButton("Novo Livro");
-        deleteButton = new JButton("Deletar Livro");
+        createButton = new JButton("Novo Autor");
+        deleteButton = new JButton("Deletar Autor");
 
         JPanel buttonPanel = new JPanel();
-        buttonPanel.add(detailsButton);        
         buttonPanel.add(createButton);
         buttonPanel.add(deleteButton);
 
         add(buttonPanel, BorderLayout.SOUTH);
     }
 
-    public void updateTable(List<Book> books) {
-        model.updateTable(books);
-    }
-
-    public void addDetailsListener(ActionListener listener) {
-        detailsButton.addActionListener(listener);
+    public void updateTable(List<Author> authors) {
+        model.updateTable(authors);
     }
 
     public void addCreateListener(ActionListener listener) {

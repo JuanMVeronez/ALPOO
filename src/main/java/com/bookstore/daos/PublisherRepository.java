@@ -7,8 +7,8 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.bookstore.MySQLConnector;
 import com.bookstore.entities.Publisher;
+import com.bookstore.services.impl.MySQLConnector;
 
 public class PublisherRepository {
     private Connection connection;

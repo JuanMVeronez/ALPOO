@@ -9,9 +9,9 @@ import com.bookstore.entities.Publisher;
 import com.bookstore.interfaces.CreateListener;
 import com.bookstore.interfaces.DeleteListener;
 import com.bookstore.models.impl.PublisherModel;
-import com.bookstore.views.publisher.PublisherCreateView;
-import com.bookstore.views.publisher.PublisherDeleteView;
-import com.bookstore.views.publisher.PublisherTableView;
+import com.bookstore.views.impl.publisher.PublisherCreateView;
+import com.bookstore.views.impl.publisher.PublisherDeleteView;
+import com.bookstore.views.impl.publisher.PublisherTableView;
 
 public class PublisherController implements Controller<PublisherTableView> {
   private PublisherModel model;

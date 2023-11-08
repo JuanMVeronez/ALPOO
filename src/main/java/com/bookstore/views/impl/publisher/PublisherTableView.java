@@ -1,11 +1,11 @@
-package com.bookstore.views.publisher;
+package com.bookstore.views.impl.publisher;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
 
 import com.bookstore.entities.Publisher;
-import com.bookstore.views.publisher.models.PublisherTableModel;
+import com.bookstore.views.impl.publisher.models.PublisherTableModel;
 
 import java.util.List;
 

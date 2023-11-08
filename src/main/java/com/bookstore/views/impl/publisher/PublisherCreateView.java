@@ -1,4 +1,4 @@
-package com.bookstore.views.publisher;
+package com.bookstore.views.impl.publisher;
 
 import javax.swing.*;
 import java.awt.*;

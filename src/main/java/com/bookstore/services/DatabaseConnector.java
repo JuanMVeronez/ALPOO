@@ -1,4 +1,4 @@
-package com.bookstore;
+package com.bookstore.services;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;

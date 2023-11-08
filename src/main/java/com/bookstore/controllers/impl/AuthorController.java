@@ -9,9 +9,9 @@ import com.bookstore.entities.Author;
 import com.bookstore.interfaces.CreateListener;
 import com.bookstore.interfaces.DeleteListener;
 import com.bookstore.models.impl.AuthorModel;
-import com.bookstore.views.author.AuthorCreateView;
-import com.bookstore.views.author.AuthorDeleteView;
-import com.bookstore.views.author.AuthorTableView;
+import com.bookstore.views.impl.author.AuthorCreateView;
+import com.bookstore.views.impl.author.AuthorDeleteView;
+import com.bookstore.views.impl.author.AuthorTableView;
 
 public class AuthorController implements Controller<AuthorTableView> {
   private AuthorModel model;

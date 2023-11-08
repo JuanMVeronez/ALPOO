@@ -1,4 +1,4 @@
-package com.bookstore.views.book;
+package com.bookstore.views.impl.book;
 
 import java.awt.Component;
 import java.awt.GridLayout;

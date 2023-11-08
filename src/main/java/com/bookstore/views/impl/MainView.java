@@ -1,4 +1,4 @@
-package com.bookstore.views;
+package com.bookstore.views.impl;
 
 import javax.swing.*;
 

@@ -1,10 +1,12 @@
-package com.bookstore;
+package com.bookstore.services.impl;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+
+import com.bookstore.services.DatabaseConnector;
 
 public class MySQLConnector implements DatabaseConnector {
     private static MySQLConnector instance;

@@ -1,8 +1,9 @@
 package com.bookstore;
 
-import io.github.cdimascio.dotenv.Dotenv;
+import com.bookstore.services.impl.MySQLConnector;
+import com.bookstore.views.impl.MainView;
 
-import com.bookstore.views.MainView;
+import io.github.cdimascio.dotenv.Dotenv;
 
 public class App 
 {   

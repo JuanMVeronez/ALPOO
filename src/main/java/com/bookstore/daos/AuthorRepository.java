@@ -7,8 +7,8 @@ import java.sql.Statement;
 import java.util.List;
 import java.util.ArrayList;
 
-import com.bookstore.MySQLConnector;
 import com.bookstore.entities.Author;
+import com.bookstore.services.impl.MySQLConnector;
 
 
 public class AuthorRepository {

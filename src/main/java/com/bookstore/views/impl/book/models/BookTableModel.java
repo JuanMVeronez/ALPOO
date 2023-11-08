@@ -1,4 +1,4 @@
-package com.bookstore.views.book.models;
+package com.bookstore.views.impl.book.models;
 
 import javax.swing.table.AbstractTableModel;
 

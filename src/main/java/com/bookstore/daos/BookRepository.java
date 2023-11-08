@@ -8,8 +8,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-import com.bookstore.MySQLConnector;
 import com.bookstore.entities.Book;
+import com.bookstore.services.impl.MySQLConnector;
 
 public class BookRepository {
     private Connection connection;

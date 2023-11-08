@@ -14,10 +14,10 @@ import com.bookstore.interfaces.DeleteListener;
 import com.bookstore.models.impl.AuthorModel;
 import com.bookstore.models.impl.BookModel;
 import com.bookstore.models.impl.PublisherModel;
-import com.bookstore.views.book.BookCreateView;
-import com.bookstore.views.book.BookDeleteView;
-import com.bookstore.views.book.BookDetailsView;
-import com.bookstore.views.book.BookTableView;
+import com.bookstore.views.impl.book.BookCreateView;
+import com.bookstore.views.impl.book.BookDeleteView;
+import com.bookstore.views.impl.book.BookDetailsView;
+import com.bookstore.views.impl.book.BookTableView;
 
 public class BookController implements Controller<BookTableView> {
   private BookModel model = new BookModel();
