@@ -11,11 +11,11 @@ import com.bookstore.interfaces.DeleteListener;
 import com.bookstore.models.impl.PublisherModel;
 import com.bookstore.views.impl.publisher.PublisherCreateView;
 import com.bookstore.views.impl.publisher.PublisherDeleteView;
-import com.bookstore.views.impl.publisher.PublisherTableView;
+import com.bookstore.views.impl.publisher.PublisherListView;
 
-public class PublisherController implements Controller<PublisherTableView> {
+public class PublisherController implements Controller<PublisherListView> {
   private PublisherModel model;
-  private PublisherTableView view;
+  private PublisherListView view;
   private PublisherCreateView createView;
   private PublisherDeleteView deleteView;
 
@@ -23,7 +23,7 @@ public class PublisherController implements Controller<PublisherTableView> {
 
   public PublisherController() {
     model = new PublisherModel();
-    view = new PublisherTableView();
+    view = new PublisherListView();
 
     view.addCreateListener((e) -> openCreateView());
     view.addDeleteListener((e) -> openDeleteView());
@@ -33,12 +33,17 @@ public class PublisherController implements Controller<PublisherTableView> {
   @Override
   public void updateTable() {
     publishers = model.list();
-    view.updateTable(publishers);
+    view.update(publishers);
   }
 
   @Override
-  public PublisherTableView getMain() {
+  public PublisherListView getMain() {
     return view;
+  }
+
+  @Override
+  public String getTitle() {
+    return "Editoras";
   }
 
   @Override

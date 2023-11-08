@@ -7,31 +7,36 @@ import java.util.List;
 
 import javax.swing.*;
 
+import com.bookstore.dtos.delete.impl.DeleteAuthorDto;
 import com.bookstore.entities.Author;
+import com.bookstore.utils.CascadeDeleteMode;
+import com.bookstore.views.DeleteView;
 
-public class AuthorDeleteView extends Component {
+public class AuthorDeleteView extends Component implements DeleteView<DeleteAuthorDto>  {
   private JFrame frame;
+  private JPanel panel;
   private JButton deleteButton;
   private JComboBox<Author> authorComboBox;
-  private JComboBox<DeleteMode> deleteOptionComboBox;
+  private JComboBox<CascadeDeleteMode> deleteOptionComboBox;
 
   public AuthorDeleteView() {
     frame = new JFrame("Deletar Autor");
     frame.setSize(400, 120);
     frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
     
+    panel = new JPanel(new GridLayout(3, 2));
     renderFields();
+    renderAction();
+    frame.add(panel);
 
     frame.setLocationRelativeTo(null);
     frame.setVisible(true);
   }
 
+  @Override
   public void renderFields() {
-    JPanel panel = new JPanel(new GridLayout(3, 2));
-
     authorComboBox = new JComboBox<Author>();
-    deleteOptionComboBox = new JComboBox<DeleteMode>();
-    deleteButton = new JButton("Deletar Autor");
+    deleteOptionComboBox = new JComboBox<CascadeDeleteMode>();    
 
     panel.add(new JLabel("Selecione o Autor:"));
     panel.add(authorComboBox);
@@ -39,12 +44,24 @@ public class AuthorDeleteView extends Component {
     panel.add(new JLabel("Opção de Exclusão:"));
     panel.add(deleteOptionComboBox);
 
-    deleteOptionComboBox.addItem(new DeleteMode("Excluir Autor", false));
-    deleteOptionComboBox.addItem(new DeleteMode("Excluir Autor e Obras", true));
+    deleteOptionComboBox.addItem(new CascadeDeleteMode("Excluir Autor", false));
+    deleteOptionComboBox.addItem(new CascadeDeleteMode("Excluir Autor e Obras", true));
+  }
 
+  @Override
+  public void renderAction() {
+    deleteButton = new JButton("Deletar Autor");
     panel.add(deleteButton);
+  }
+  
+  @Override
+  public void addDeleteListener(ActionListener listener) {
+    deleteButton.addActionListener(listener);
+  }
 
-    frame.add(panel);
+  @Override
+  public void close() {
+    frame.dispose();
   }
 
   public Author getToDelete() {
@@ -52,34 +69,11 @@ public class AuthorDeleteView extends Component {
   }
 
   public boolean getDeleteIsCascade() {
-    DeleteMode mode = (DeleteMode) deleteOptionComboBox.getSelectedItem();
-    return mode.isCascade;
-  }
-  
-  public void addDeleteListener(ActionListener listener) {
-    deleteButton.addActionListener(listener);
+    CascadeDeleteMode mode = (CascadeDeleteMode) deleteOptionComboBox.getSelectedItem();
+    return mode.getIsCascade();
   }
 
   public void setAuthorComboBox(List<Author> authors) {
     authors.forEach(author -> authorComboBox.addItem(author));
-  }
-
-  public void close() {
-    frame.dispose();
-  }
-
-  class DeleteMode {
-    private String name;
-    private boolean isCascade;
-
-    public DeleteMode(String name, boolean isCascade) {
-      this.name = name;
-      this.isCascade = isCascade;
-    }
-
-    @Override
-    public String toString() {
-      return name;
-    }
   }
 }

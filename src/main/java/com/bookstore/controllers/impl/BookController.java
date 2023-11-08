@@ -17,14 +17,14 @@ import com.bookstore.models.impl.PublisherModel;
 import com.bookstore.views.impl.book.BookCreateView;
 import com.bookstore.views.impl.book.BookDeleteView;
 import com.bookstore.views.impl.book.BookDetailsView;
-import com.bookstore.views.impl.book.BookTableView;
+import com.bookstore.views.impl.book.BookListView;
 
-public class BookController implements Controller<BookTableView> {
+public class BookController implements Controller<BookListView> {
   private BookModel model = new BookModel();
   private AuthorModel authorModel = new AuthorModel();
   private PublisherModel publisherModel = new PublisherModel();
 
-  private BookTableView view;
+  private BookListView view;
   private BookCreateView createView;
   private BookDeleteView deleteView;  
   private BookDetailsView detailsView;
@@ -32,20 +32,17 @@ public class BookController implements Controller<BookTableView> {
   List<Book> books;
 
   public BookController() {
-    view = new BookTableView();
+    view = new BookListView();
     view.addCreateListener((e) -> openCreateView());
     view.addDeleteListener((e) -> openDeleteView());
-    view.addDetailsListener(e -> {
-      detailsView = new BookDetailsView(this);
-      detailsView.setBookComboBox(books);
-    });
+    view.addDetailsListener((e) -> openDetailsView());
     updateTable();
   }
 
   @Override
   public void updateTable() {
     books = model.list();
-    view.updateTable(books);
+    view.update(books);
   }
 
   public Book getBookDetails(Book book) {
@@ -53,8 +50,13 @@ public class BookController implements Controller<BookTableView> {
   }
 
   @Override
-  public BookTableView getMain() {
+  public BookListView getMain() {
     return view;
+  }
+
+  @Override
+  public String getTitle() {
+    return "Livros";
   }
 
   @Override
@@ -80,6 +82,11 @@ public class BookController implements Controller<BookTableView> {
     deleteView = new BookDeleteView();
     deleteView.addDeleteListener((e) -> delete());
     deleteView.setBookComboBox(books);
+  }
+
+  public void openDetailsView() {
+    detailsView = new BookDetailsView(this);
+    detailsView.setBookComboBox(books);
   }
 
   @Override

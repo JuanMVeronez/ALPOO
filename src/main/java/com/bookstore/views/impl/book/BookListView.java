@@ -3,6 +3,7 @@ package com.bookstore.views.impl.book;
 import javax.swing.*;
 
 import com.bookstore.entities.Book;
+import com.bookstore.views.ListView;
 import com.bookstore.views.impl.book.models.BookTableModel;
 
 import java.awt.*;
@@ -11,21 +12,22 @@ import java.awt.event.ActionListener;
 
 import java.util.List;
 
-public class BookTableView extends JPanel {
+public class BookListView extends JPanel implements ListView<Book> {
     private JButton detailsButton;
     private JButton createButton;
     private JButton deleteButton;
     private JTable table;
     private BookTableModel model;
 
-    public BookTableView() {
+    public BookListView() {
         setLayout(new BorderLayout());
         
-        renderTable();
-        renderActionButtons();
+        render();
+        renderActions();
     }
 
-    public void renderTable() {
+    @Override
+    public void render() {
         model = new BookTableModel();
         table = new JTable(model);
         
@@ -34,7 +36,8 @@ public class BookTableView extends JPanel {
         add(scrollPane, BorderLayout.CENTER);
     }
 
-    public void renderActionButtons() {
+    @Override
+    public void renderActions() {
         detailsButton = new JButton("Detalhes do Livro");        
         createButton = new JButton("Novo Livro");
         deleteButton = new JButton("Deletar Livro");
@@ -47,7 +50,8 @@ public class BookTableView extends JPanel {
         add(buttonPanel, BorderLayout.SOUTH);
     }
 
-    public void updateTable(List<Book> books) {
+    @Override
+    public void update(List<Book> books) {
         model.updateTable(books);
     }
 
@@ -55,10 +59,12 @@ public class BookTableView extends JPanel {
         detailsButton.addActionListener(listener);
     }
 
+    @Override
     public void addCreateListener(ActionListener listener) {
         createButton.addActionListener(listener);
     }
 
+    @Override
     public void addDeleteListener(ActionListener listener) {
         deleteButton.addActionListener(listener);
     }

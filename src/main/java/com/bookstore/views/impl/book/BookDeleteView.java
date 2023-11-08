@@ -8,9 +8,11 @@ import java.util.List;
 import javax.swing.*;
 
 import com.bookstore.entities.Book;
+import com.bookstore.views.DeleteView;
 
-public class BookDeleteView extends Component {
+public class BookDeleteView extends Component implements DeleteView<Book> {
   private JFrame frame;
+  private JPanel panel;
   private JButton deleteButton;
   private JComboBox<Book> bookComboBox;
   
@@ -19,39 +21,46 @@ public class BookDeleteView extends Component {
     frame.setSize(400, 80);
     frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
     
+    panel = new JPanel(new GridLayout(2, 2));
+
     renderFields();
+    renderAction();
+
+    frame.add(panel);
 
     frame.setLocationRelativeTo(null);
     frame.setVisible(true);
   }
 
+  @Override
   public void renderFields() {
-    JPanel panel = new JPanel(new GridLayout(2, 2));
-
     bookComboBox = new JComboBox<Book>();
-    deleteButton = new JButton("Deletar Livro");
 
     panel.add(new JLabel("Selecione o Livro:"));
     panel.add(bookComboBox);
+  }
 
+  @Override
+  public void renderAction() {
+    deleteButton = new JButton("Deletar Livro");
     panel.add(deleteButton);
+  }
+  
+  @Override
+  public void addDeleteListener(ActionListener listener) {
+    deleteButton.addActionListener(listener);
+  }
 
-    frame.add(panel);
+  @Override
+  public void close() {
+    frame.dispose();
   }
 
   public Book getToDelete() {
     return (Book) bookComboBox.getSelectedItem();
   }
-  
-  public void addDeleteListener(ActionListener listener) {
-    deleteButton.addActionListener(listener);
-  }
 
   public void setBookComboBox(List<Book> books) {
     books.forEach(book -> bookComboBox.addItem(book));
-  }
-
-  public void close() {
-    frame.dispose();
   }
 }

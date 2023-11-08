@@ -11,12 +11,12 @@ import com.bookstore.interfaces.DeleteListener;
 import com.bookstore.models.impl.AuthorModel;
 import com.bookstore.views.impl.author.AuthorCreateView;
 import com.bookstore.views.impl.author.AuthorDeleteView;
-import com.bookstore.views.impl.author.AuthorTableView;
+import com.bookstore.views.impl.author.AuthorListView;
 
-public class AuthorController implements Controller<AuthorTableView> {
+public class AuthorController implements Controller<AuthorListView> {
   private AuthorModel model;
 
-  private AuthorTableView view;
+  private AuthorListView view;
   private AuthorCreateView createView;
   private AuthorDeleteView deleteView;
 
@@ -24,7 +24,7 @@ public class AuthorController implements Controller<AuthorTableView> {
 
   public AuthorController() {
     model = new AuthorModel();
-    view = new AuthorTableView();
+    view = new AuthorListView();
 
     view.addCreateListener((e) -> openCreateView());
     view.addDeleteListener((e) -> openDeleteView());
@@ -34,12 +34,17 @@ public class AuthorController implements Controller<AuthorTableView> {
   @Override
   public void updateTable() {
     authors = model.list();
-    view.updateTable(authors);
+    view.update(authors);
   }
 
   @Override
-  public AuthorTableView getMain() {
+  public AuthorListView getMain() {
     return view;
+  }
+
+  @Override
+  public String getTitle() {
+    return "Autores";
   }
 
   @Override

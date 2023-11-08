@@ -4,13 +4,15 @@ import javax.swing.*;
 
 import com.bookstore.entities.Author;
 import com.bookstore.entities.Publisher;
+import com.bookstore.views.CreateView;
 
 import java.awt.*;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
-public class BookCreateView extends Component {
+public class BookCreateView extends Component implements CreateView {
   private JFrame frame;
+  private JPanel panel;
   private JTextField titleField;
   private JTextField isbnField;
   private JTextField priceField;
@@ -27,15 +29,19 @@ public class BookCreateView extends Component {
     frame.setSize(400, 280);
     frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
+    panel = new JPanel(new GridLayout(6, 2));
+    
     renderFields();
+    renderActions();
+
+    frame.add(panel);
     
     frame.setLocationRelativeTo(null);
     frame.setVisible(true);
   }
 
+  @Override
   public void renderFields() {
-    JPanel panel = new JPanel(new GridLayout(6, 2));
-    
     titleField = new JTextField(10);
     panel.add(new JLabel("Título:"));
     panel.add(titleField);
@@ -58,11 +64,27 @@ public class BookCreateView extends Component {
     authorScrollPane.setSize(200, 160);
     panel.add(new JLabel("Autores:"));
     panel.add(authorScrollPane);
-    
+  }
+
+  @Override
+  public void renderActions() {
     createButton = new JButton("Adicionar");
     panel.add(createButton);
+  }
 
-    frame.add(panel);
+  @Override
+  public void addCreateListener(ActionListener listener) {
+    createButton.addActionListener(listener);
+  }
+
+  @Override
+  public void throwError(String message) {
+    JOptionPane.showMessageDialog(frame, message, "Erro", JOptionPane.ERROR_MESSAGE);
+  }
+
+  @Override
+  public void close() {
+    frame.dispose();
   }
 
   public String getTitle() {
@@ -100,17 +122,4 @@ public class BookCreateView extends Component {
   public void setAuthorList(java.util.List<Author> authors) {
     authors.forEach(author -> authorListModel.addElement(author));
   }
-
-  public void addCreateListener(ActionListener listener) {
-    createButton.addActionListener(listener);
-  }
-
-  public void throwError(String message) {
-    JOptionPane.showMessageDialog(frame, message, "Erro", JOptionPane.ERROR_MESSAGE);
-  }
-
-  public void close() {
-    frame.dispose();
-  }
-  
 }

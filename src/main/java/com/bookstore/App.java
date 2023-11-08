@@ -1,5 +1,12 @@
 package com.bookstore;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import com.bookstore.controllers.Controller;
+import com.bookstore.controllers.impl.AuthorController;
+import com.bookstore.controllers.impl.BookController;
+import com.bookstore.controllers.impl.PublisherController;
 import com.bookstore.services.impl.MySQLConnector;
 import com.bookstore.views.impl.MainView;
 
@@ -31,6 +38,12 @@ public class App
         
         connector.connect(jdbcUrl, dbUser, dbPassword);
 
-        new MainView();
+        List<Controller<?>> controllers = new ArrayList<>();
+
+        controllers.add(new BookController());
+        controllers.add(new PublisherController());
+        controllers.add(new AuthorController());
+
+        new MainView(controllers);
     }
 }

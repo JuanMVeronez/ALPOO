@@ -6,6 +6,7 @@ import com.bookstore.interfaces.DeleteListener;
 public interface Controller<T> {
   void updateTable();
   T getMain();
+  String getTitle();
 
   void addCreateListener(CreateListener listener);
   void addDeleteListener(DeleteListener listener);
